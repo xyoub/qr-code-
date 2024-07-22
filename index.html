@@ -25,11 +25,14 @@
         #canvas {
             margin: 20px;
         }
-        input[type="file"], input[type="number"], input[type="color"], select {
+        input[type="text"], input[type="number"], input[type="color"], select {
             margin: 10px 0;
         }
         button {
             margin: 10px;
+        }
+        .image-options {
+            display: none;
         }
     </style>
 </head>
@@ -38,34 +41,42 @@
         <h1>Générateur de QR Code</h1>
         <input type="text" id="url" placeholder="Entrez un lien" />
         
-        <label for="qr-style">Choisir le style du QR Code:</label>
+        <label for="qr-style">Choisir le style du QR Code :</label>
         <select id="qr-style">
-            <option value="rounded">Arrondi</option>
             <option value="square">Carré</option>
-            <option value="dot">Point</option>
+            <option value="rounded">Arrondi</option>
+            <option value="star">Étoile</option>
+            <option value="heart">Cœur</option>
+            <option value="triangle">Triangle</option>
         </select>
         
         <label for="image-size">Taille de l'image (en %):</label>
         <input type="number" id="image-size" min="10" max="100" value="20" />
-
+        
         <label for="background-color">Couleur de l'arrière-plan:</label>
         <input type="color" id="background-color" value="#ffffff" />
-
+        
+        <label for="qr-color">Couleur du QR Code:</label>
+        <input type="color" id="qr-color" value="#000000" />
+        
         <button onclick="generateQRCode()">Générer QR Code</button>
         
         <div class="qr-code-container">
             <div id="canvas"></div>
         </div>
+        
+        <label for="show-image-options">
+            <input type="checkbox" id="show-image-options" onchange="toggleImageOptions()" />
+            Ajouter une image au centre
+        </label>
 
-        <label for="qr-image">Ajouter une image au centre:</label>
-        <input type="file" id="qr-image" accept="image/*" />
-        <button onclick="updateQRCodeImage()">Ajouter/Modifier Image</button>
-
-        <label for="qr-color">Changer la couleur:</label>
-        <input type="color" id="qr-color" value="#000000" />
-        <button onclick="changeQRCodeColor()">Changer Couleur</button>
-
-        <label for="file-format">Choisir le format de téléchargement:</label>
+        <div class="image-options">
+            <label for="qr-image">Ajouter une image:</label>
+            <input type="file" id="qr-image" accept="image/*" />
+            <button onclick="updateQRCodeImage()">Ajouter/Modifier Image</button>
+        </div>
+        
+        <label for="file-format">Choisir le format de téléchargement :</label>
         <select id="file-format">
             <option value="png">PNG</option>
             <option value="jpeg">JPEG</option>
