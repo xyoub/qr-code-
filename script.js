@@ -53,3 +53,6 @@ function downloadQRCode() {
     const format = document.getElementById('file-format').value;
     qrCode.download({ name: "qr_code", extension: format });
 }
+function refreshPage() {
+    window.location.reload();
+}
