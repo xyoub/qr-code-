@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Générateur de QR Code Amélioré</title>
+    <title>Générateur de QR Code</title>
     <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     <style>
         body {
@@ -13,12 +13,12 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: rgb(222, 184, 164);
             padding: 20px;
             box-sizing: border-box;
         }
         .container {
-            background-color: white;
+            background-color: rgb(239, 228, 205);
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -65,13 +65,15 @@
             margin-top: 15px;
         }
     </style>
+    <link rel="icon" href="img/logoq.png" type="image/png">
 </head>
 <body>
+    <img src="img/logoq.png" alt="Logo" style="width: 100px; height: auto; margin-bottom: 20px;">
     <div class="container">
-        <h1>Générateur de QR Code Amélioré</h1>
+        <h1>Générateur de QR Code</h1>
         <div class="form-group">
             <label for="url">URL :</label>
-            <input type="text" id="url" placeholder="Entrez un lien" />
+            <input autocomplete="off" type="text" id="url" placeholder="Entrez un lien" />
         </div>
         
         <div class="form-group">
@@ -130,5 +132,12 @@
     </div>
 
     <script src="script.js"></script>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <a href="#">Générateur de QR Code</a>. All Rights Reserved. Designed by
+                <a href="https://www.linkedin.com/in/boujemaoui-ayoub/">Boujemaoui Ayoub</a>
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
