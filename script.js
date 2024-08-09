@@ -7,6 +7,23 @@ function generateQRCode() {
     const backgroundColor = document.getElementById('background-color').value;
     const imageInput = document.getElementById('qr-image').files[0];
     const imageSizePercent = document.getElementById('image-size').value;
+    // Initialisation du thème dès le chargement de la page
+const themeToggleButton = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme') || 'light';
+
+// Applique le thème actuel au chargement de la page
+document.documentElement.setAttribute('data-theme', currentTheme);
+
+// Met à jour le texte du bouton en fonction du thème actuel
+themeToggleButton.textContent = currentTheme === 'dark' ? 'Passer au thème clair' : 'Passer au thème sombre';
+
+// Gestion du changement de thème
+themeToggleButton.addEventListener('click', () => {
+    const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    themeToggleButton.textContent = newTheme === 'dark' ? 'Passer au thème clair' : 'Passer au thème sombre';
+});
 
     // Configuration du QR Code
     const qrCodeOptions = {
