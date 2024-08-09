@@ -7,23 +7,6 @@ function generateQRCode() {
     const backgroundColor = document.getElementById('background-color').value;
     const imageInput = document.getElementById('qr-image').files[0];
     const imageSizePercent = document.getElementById('image-size').value;
-    // Initialisation du thème dès le chargement de la page
-const themeToggleButton = document.getElementById('theme-toggle');
-const currentTheme = localStorage.getItem('theme') || 'light';
-
-// Applique le thème actuel au chargement de la page
-document.documentElement.setAttribute('data-theme', currentTheme);
-
-// Met à jour le texte du bouton en fonction du thème actuel
-themeToggleButton.textContent = currentTheme === 'dark' ? 'Passer au thème clair' : 'Passer au thème sombre';
-
-// Gestion du changement de thème
-themeToggleButton.addEventListener('click', () => {
-    const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    themeToggleButton.textContent = newTheme === 'dark' ? 'Passer au thème clair' : 'Passer au thème sombre';
-});
 
     // Configuration du QR Code
     const qrCodeOptions = {
@@ -33,7 +16,7 @@ themeToggleButton.addEventListener('click', () => {
         data: url,
         dotsOptions: {
             color: qrColor,
-            type: qrStyle // Utiliser les styles intégrés
+            type: qrStyle
         },
         backgroundOptions: {
             color: backgroundColor
@@ -45,7 +28,7 @@ themeToggleButton.addEventListener('click', () => {
         const imageOptions = {
             crossOrigin: "anonymous",
             image: URL.createObjectURL(imageInput),
-            size: imageSizePercent / 100 // Convertir en proportion
+            size: imageSizePercent / 100
         };
         qrCodeOptions.image = imageOptions.image;
         qrCodeOptions.imageOptions = imageOptions;
@@ -70,6 +53,23 @@ function downloadQRCode() {
     const format = document.getElementById('file-format').value;
     qrCode.download({ name: "qr_code", extension: format });
 }
+
 function refreshPage() {
     window.location.reload();
 }
+
+// Initialisation du thème dès le chargement de la page
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleButton = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    themeToggleButton.textContent = currentTheme === 'dark' ? 'Passer au thème clair' : 'Passer au thème sombre';
+
+    // Gestion du changement de thème
+    themeToggleButton.addEventListener('click', () => {
+        const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeToggleButton.textContent = newTheme === 'dark' ? 'Passer au thème clair' : 'Passer au thème sombre';
+    });
+});
